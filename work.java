@@ -131,10 +131,10 @@ public class work{
             gain = CalculateGain(finalResultsAtrributes, verifyTotal, examples);
 
             System.out.println("Input :" + inputs);
-            System.out.println("Exemplos :" + examples);
-            System.out.println("Hash Resultados: " + resultsAtrributes);
-            System.out.println("Hash Final / Entropia: " + finalResultsAtrributes);
-            System.out.println("Verify Total :" + verifyTotal);
+            System.out.println("Exemples :" + examples);
+            System.out.println("Hash Results: " + resultsAtrributes);
+            System.out.println("Hash Final / Entropy: " + finalResultsAtrributes);
+            //System.out.println("Verify Total :" + verifyTotal);
             System.out.println("Gain :" + gain);
             
             return gain;
@@ -171,6 +171,9 @@ public class work{
             return AtrributesFinal;
         }
 
+        // BIN CODE NOT USED RIGHT NOW.
+
+        /* 
         public static int[] binData(double[] data, int numBins) {
             int[] bins = new int[data.length];
         
@@ -202,11 +205,50 @@ public class work{
             return bins;
         }
         
+        */
 
-        static Node ID3(LinkedList<String> Examples, LinkedList<String> Target_atrribute, Atributtes){
-            return node;
+        /* 
+        static Node ID3(LinkedList<String> examples, LinkedList<String> Target_atrribute, LinkedList<String> atributtes){
+
+            Node root = new Node("", "");
+
+            if (examples.isEmpty()) {
+                return root;
+            }
+
+            int numYes = 0;
+            int numNo = 0;
+
+            for (int i = 1; i < examples.size(); i++) {
+                if (examples.get(i).equals("yes")) {
+                    numYes++;
+                } else {
+                    numNo++;
+                }
+            }
+
+            if (numYes == examples.size() - 1) {
+                root.value = "yes";
+                return root;
+            }
+
+            if (numNo == examples.size() - 1) {
+                root.value = "no";
+                return root;
+            }
+
+            if (atributtes.isEmpty()) {
+                if (numYes > numNo) {
+                    root.value = "yes";
+                } else {
+                    root.value = "no";
+                }
+                return root;
+            }
+            
+                return root;
         }
-
+        */
         // -------------------------------------- //
 
 }
@@ -260,9 +302,7 @@ public class CSVReader {
     }
 
     public static void main(String args[]){
-    //System.out.println("boas");
-    
- 
+
 
     String filename = WelcomeFunction();
     LinkedList<LinkedList<String>> records = CSVReader.ReadFile(filename);
@@ -282,23 +322,9 @@ public class CSVReader {
         }
     }
 
-    ///System.out.println("Boas: " + examples);
-    
-    //System.out.println(attributes);
-    //attributes.removeFirst();
-    //attributes.removeLast();
-    //System.out.println(attributes);
     
     decisionTree.CalculateEntropy(records, examples);
     //ID3;
     
-    /* 
-    double[] data = {85, 80, 83, 70, 68, 65, 64, 72, 69, 75, 75, 72, 81, 71};
-
-    int[] bins = decisionTree.binData(data, 3);
-
-    System.out.println("Bins:");
-    System.out.println(Arrays.toString(bins));
-    */
 }
 }

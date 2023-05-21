@@ -77,68 +77,59 @@ public class work{
             return gain;
         }
 
-        static double CalculateAtrributeEntropy(LinkedList<String> inputs, LinkedList<String> examples){
-
+        static double CalculateAtrributeEntropy(LinkedList<String> inputs, LinkedList<String> examples) {
             HashMap<String, Double> resultsAtrributes = new HashMap<>();
             HashMap<String, Double> verifyTotal = new HashMap<>();
-
-
+        
             double value = 0.0;
             double size = inputs.size() - 1;
-
-            // Get No's and save on the HashMap, save the total count of occurences and save on the HashMap.
-
-            for(int i = 1; i < inputs.size(); i++){
-                if(!resultsAtrributes.containsKey(inputs.get(i))){
+        
+            // Get No's and save on the HashMap, save the total count of occurrences and save on the HashMap.
+            for (int i = 1; i < inputs.size(); i++) {
+                if (!resultsAtrributes.containsKey(inputs.get(i))) {
                     resultsAtrributes.put(inputs.get(i), 0.0);
                 }
-
+        
                 if (examples.get(i).equals("no")) {
                     String attributeValue = inputs.get(i);
                     double count = resultsAtrributes.get(attributeValue) + 1.0;
                     resultsAtrributes.put(attributeValue, count);
                 }
-
-                if(!verifyTotal.containsKey(inputs.get(i))){
+        
+                if (!verifyTotal.containsKey(inputs.get(i))) {
                     verifyTotal.put(inputs.get(i), 1.0);
-                }
-                else{
-                    
+                } else {
                     String attributeValue = inputs.get(i);
                     double count = verifyTotal.get(attributeValue) + 1.0;
                     verifyTotal.put(attributeValue, count);
                 }
             }
-
-            
-
-            HashMap<String, Double> finalResultsAtrributes = new HashMap<>(); 
-
+        
+            HashMap<String, Double> finalResultsAtrributes = new HashMap<>();
+        
             // Calculations of Entropy for each SubSet-Attribute and save on the HashMap.
-
             for (Map.Entry<String, Double> entry : resultsAtrributes.entrySet()) {
                 String attributeValue = entry.getKey();
                 double count = entry.getValue();
                 double total = verifyTotal.get(attributeValue);
                 double countYes = total - count;
                 value = Entropy(countYes, count);
-                finalResultsAtrributes.put(attributeValue,value);
+                finalResultsAtrributes.put(attributeValue, value);
             }
-            
+        
             // CalculateGain
-
             double gain = 0;
             gain = CalculateGain(finalResultsAtrributes, verifyTotal, examples);
-
+        
             System.out.println("Input :" + inputs);
-            System.out.println("Exemples :" + examples);
+            System.out.println("Examples :" + examples);
             System.out.println("Hash Results: " + resultsAtrributes);
             System.out.println("Hash Final / Entropy: " + finalResultsAtrributes);
-            //System.out.println("Verify Total :" + verifyTotal);
             System.out.println("Gain :" + gain);
-            
+        
             return gain;
         }
+        
 
         static HashMap CalculateEntropy(LinkedList<LinkedList<String>> input, LinkedList<String> examples){
             

@@ -1,1 +1,3 @@
-# TrabalhoIA3
+# Entropy-Information-Gain-Calculation
+
+Incomplete.
